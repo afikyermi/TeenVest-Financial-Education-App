@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>משחק ההשקעות - מסע 25 שנה</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- מסך פתיחה והסבר -->
+    <section id="introSection" class="section active">
+        <div class="container">
+            <h1>🎯 משחק ההשקעות</h1>
+            <h2>מסע של 25 שנה להצלחה פיננסית</h2>
+            
+            <div class="explanation-box">
+                <h3>מה תלמדו במשחק?</h3>
+                <p>
+                    משחק זה ילמד אתכם כיצד החלטות השקעה נבונות משפיעות על העושר שלכם לאורך זמן.
+                    תחוו את כוח הריבית דריבית, תבינו את ההבדל בין השקעה להוצאה רגשית,
+                    ותראו איך כל החלטה קטנה יכולה לשנות את התוצאה הסופית.
+                </p>
+                
+                <h3>איך משחקים?</h3>
+                <ul>
+                    <li><strong>25 שנים, 10 החלטות:</strong> במהלך 25 שנות המשחק תקבלו 10 הזדמנויות לקבל החלטות פיננסיות.</li>
+                     <li><strong>בחרו בחכמה:</strong> בכל נקודת החלטה תוצגו בפניכם 4 אפשרויות רכישה - חלקן השקעות שיניבו רווח, וחלקן הוצאות שלא יחזירו כסף.</li>
+                     <li><strong>זיהוי עצמאי:</strong> המשחק לא יסמן מה השקעה ומה הוצאה - עליכם לזהות זאת לבד!</li>
+                     <li><strong>התקדמות אוטומטית:</strong> בין ההחלטות, השנים יעברו אוטומטית עם הכנסות משכורת, הוצאות יוקר מחיה, והבשלת השקעות.</li>
+                     <li><strong>השנים והתשואה:</strong> השנים הסגורות מציינות תקופת השקעה פעילה – התשואה מסומנת בירוק ומצטברת מדי שנה.</li>
+                     <li><strong>צבירת הון עצמי והשקעות:</strong> ככל שתצבור הון עצמי גבוה יותר – תוכל לבחור השקעות גדולות יותר עם תשואה גבוהה יותר.</li>
+            </ul>
+            </div>
+
+            <div class="input-form">
+                <h3>הגדירו את פרמטרי המשחק</h3>
+                
+                <div class="form-group">
+                    <label for="startingCapital">הון התחלתי (מינימום 100,000 ₪):</label>
+                    <input type="number" id="startingCapital" min="100000" step="10000" placeholder="דוגמא: 200000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="monthlySalary">משכורת חודשית (₪):</label>
+                    <input type="number" id="monthlySalary" min="0" step="500" placeholder="דוגמה: 15000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="monthlyExtra">הוצאה חודשית (₪):</label>
+                    <input type="number" id="monthlyExtra" min="0" step="50" placeholder="דוגמה: 12000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="finalGoal">יעד סופי (₪):</label>
+                    <input type="number" id="finalGoal" min="100000" step="50000" placeholder="דוגמה: 2000000" required>
+                    <small id="goalHelper">היעד הוא עד פי 15 מההון ההתחלתי</small>
+                </div>
+
+                <button id="startGameBtn" class="btn-primary">התחל משחק!</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- מסך המשחק -->
+    <section id="gameSection" class="section">
+        <div class="container">
+            <!-- סטטוס בר -->
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="label">שנה:</span>
+                    <span id="currentYear" class="value">1</span>
+                    <span class="total">/ 25</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">יתרה:</span>
+                    <span id="currentBalance" class="value">0</span>
+                    <span class="unit">₪</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">יעד:</span>
+                    <span id="goalDisplay" class="value">0</span>
+                    <span class="unit">₪</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">החלטות שנעשו:</span>
+                    <span id="decisionsMade" class="value">0</span>
+                    <span class="total">/ 10</span>
+                </div>
+            </div>
+
+            <!-- אזור כרטיסי רכישה -->
+            <div id="decisionArea">
+                <h2>בחרו את הרכישה שלכם</h2>
+                <p class="hint">זכרו: חלק מהכרטיסים הם השקעות שיניבו רווח, וחלקם הוצאות שלא יחזירו כסף!</p>
+                
+                <div id="cardsContainer" class="cards-grid">
+                    <!-- כרטיסים ייווצרו באופן דינמי -->
+                </div>
+
+                <button id="continueBtn" class="btn-secondary">המשך לשנים הבאות</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- מסך תוצאות -->
+    <section id="resultsSection" class="section">
+        <div class="container">
+            <div id="resultsContent">
+                <!-- תוכן דינמי -->
+            </div>
+
+            <div class="guide-teaser">
+                <h2>🎁 רוצים ללמוד איך להשקיע נכון במציאות?</h2>
+                <p>קבלו את <strong>"מדריך ההשקעות שלי"</strong> - מדריך מקיף ומעשי שילווה אתכם בדרך להצלחה פיננסית!</p>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="fullName">שם מלא:</label>
+                        <input type="text" id="fullName" required minlength="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">כתובת אימייל:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <button type="submit" class="btn-primary">שלחו לי את המדריך!</button>
+                </form>
+
+                <div id="thankYouMessage" class="thank-you" style="display: none;">
+                    <h3>✅ תודה רבה!</h3>
+                    <p>המדריך בדרך אליכם (סימולציה - לא נשלח באמת)</p>
+                </div>
+            </div>
+
+            <button id="restartBtn" class="btn-secondary">שחקו שוב</button>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
